@@ -1,0 +1,13 @@
+﻿ID	模型英文名称	模型中文名称	模型缩略图名称	ab包名称	角色缩放比例	角色位置	角色旋转
+int	string	string	string	string	float	string	string
+ID	avatarName	nickName	imageName	abName	scale	postion	angle
+0	xiongmao	熊猫	xiongmao	pc_panda	1	0,-0.186,-0.079	11.576,180,0
+1	witch	女巫	Witch	pc_witch	1	0,-0.634,-0.777	0,180,0
+2	xiangsunv	像素男	xiangsunan	pc_Minecraft01	0.55	0,0.06,0	0,180,0
+3	xiangsunv	像素女	xiangsunv	pc_Minecraft02	0.55	0,0.06,0	0,180,0
+4	chuchu	楚楚1	ChuChu02	pc_chuchu02	1	0,-0.722,-0.783	0,180,0
+5	chuchu	楚楚	ChuChu	pc_chuchu01	1	0,-0.727,-0.783	0,180,0
+6	magicboy	泡芙	Paofu	pc_paofu	0.7	0,-0.24,-0.93	0,180,0
+7	xiningjun	西宁军	xiningjun	pc_xiningjun	1	-0.007,0.055,-0.514	0,180,0
+8	xiaoyang	铁锅妹妹	xiaoyang	pc_tieguo	1	-0.007,0.084,-0.95	-9.79,180,1.08
+9	jiangxiaoyu	僵小鱼	jiangxiaoyu	pc_jiangxiaoyu	1.2	0,0,0	0,180,0
