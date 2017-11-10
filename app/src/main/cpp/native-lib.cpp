@@ -154,7 +154,7 @@ void * test_call_read_color_frame_function(void * vptr_args)
 {
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar test_call_read_color_frame_function");
     
-    return nullptr;
+//    return nullptr;
     Device device;
     
     if (g_yuvCount > 0) {
