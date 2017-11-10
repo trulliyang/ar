@@ -46,21 +46,10 @@ void * test_call_read_depth_frame_function(void * vptr_args)
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar not first return");
         return nullptr;
     }
-    
+    return nullptr;
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar test_call_read_depth_frame_function");
     
     Device device;
-    
-    __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar device.isValid result = %d", device.isValid());
-    
-//    if (!device.isValid()) {
-//
-//    } else {
-//        __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar device.isValid false. return!");
-//        return nullptr;
-//    }
-    
-//    FILE* pf = fopen("/storage/emulated/0/huaweiarDepth.yuv", "wt+");
     
     int result = 0;
     int count = 0;
@@ -113,32 +102,30 @@ void * test_call_read_depth_frame_function(void * vptr_args)
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar depth w=%d,h=%d", irWidth, irHeight);
     
     pDepthFrame.data = malloc(irWidth*irHeight* sizeof(float));
-    
-    
-        int i = 0;
-        __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar before readFrame %d", i);
-        r = streamDepth->readFrame(&pDepthFrame);
-        if (r != 0) {
-            __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar readFrame %d failed", i);
-            return nullptr;
-        }
-
-    
-    __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar pDepthFrame[0]=%f",
-                        ((float *)pDepthFrame.data)[0]);
-    
-    FILE* pf = fopen("/storage/emulated/0/huaweiarDepth.yuv", "w");
+    FILE* pf = fopen("/storage/emulated/0/huaweiarDepth.yuv", "ab+");
     int lenPerFrame = irWidth*irHeight* sizeof(float);
     int Frame = 1;
     int len = lenPerFrame*Frame;
+
     if (pf) {
-        __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open depth success\n");
-        fwrite (pDepthFrame.data , sizeof(char), len , pf );
-        fclose (pf);
+        for (int i = 0; i < 1; i++) {
+            __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar before readFrame %d", i);
+            r = streamDepth->readFrame(&pDepthFrame);
+            if (r != 0) {
+                __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar readFrame %d failed", i);
+                continue;
+            }
+        
+            __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar pDepthFrame[0]=%f",
+                                ((float *) pDepthFrame.data)[0]);
+            __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open depth success\n");
+            __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open depth fp = %p\n", pf);
+            fwrite(pDepthFrame.data, sizeof(float), irWidth*irHeight, pf);
+        }
+        fclose(pf);
     } else {
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open depth failed\n");
     }
-    
     free(pDepthFrame.data);
 //    device.close();
 //    streamDepth->stop();
@@ -205,33 +192,25 @@ void * test_call_read_color_frame_function(void * vptr_args)
     
     
     pColorFrame.data = malloc(irWidth*irHeight*3/2);
-
-//    for(int i = 0; i < 200; ++i){
-    result = streamColor->readFrame(&pColorFrame);
-    if (result != 0) {
-        return nullptr;
-    }
-//    }
-
-
-    
-//    g_pYUVFrameData->data = malloc(irWidth*irHeight*3/2);
-//    streamColor->readFrame(g_pYUVFrameData);
-//    __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar g_pYUVFrameData->data[0]=%u",
-//                        ((unsigned char *)g_pYUVFrameData->data)[0]);
-    
-    FILE* pf = fopen("/storage/emulated/0/huaweiarYUV.yuv", "w");
+    FILE* pf = fopen("/storage/emulated/0/huaweiarYUV.yuv", "wa");
     int lenPerFrame = irWidth*irHeight*3/2;
     int Frame = 1;
     int len = lenPerFrame*Frame;
-//    unsigned char *buf = new unsigned char[len];
+    
     if (pf) {
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open yuv success\n");
-        fwrite (pColorFrame.data , sizeof(char), len , pf );
+        for(int i = 0; i < 20; ++i){
+            result = streamColor->readFrame(&pColorFrame);
+            if (result != 0) {
+                continue;
+            }
+            fwrite (pColorFrame.data , sizeof(char), len , pf );
+        }
         fclose(pf);
     } else {
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang open yuv failed\n");
     }
+    
     
     free(pColorFrame.data);
 //    device.close();
