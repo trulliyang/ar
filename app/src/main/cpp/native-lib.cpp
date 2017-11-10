@@ -48,8 +48,6 @@ void * test_call_read_depth_frame_function(void * vptr_args)
     }
     
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar test_call_read_depth_frame_function");
-//    Device * device = (Device*)vptr_args;
-//    VideoFrame *pFrame = (VideoFrame*)vptr_args;
     
     Device device;
     
@@ -103,6 +101,7 @@ void * test_call_read_depth_frame_function(void * vptr_args)
     int r = streamDepth->start();
     if (r != 0) {
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar start failed. return");
+        return nullptr;
     }
     
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar after start");
@@ -114,24 +113,19 @@ void * test_call_read_depth_frame_function(void * vptr_args)
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar depth w=%d,h=%d", irWidth, irHeight);
     
     pDepthFrame.data = malloc(irWidth*irHeight* sizeof(float));
-
-//    for(int i = 0; i < 1; ++i){
+    
+    
         int i = 0;
         __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar before readFrame %d", i);
         r = streamDepth->readFrame(&pDepthFrame);
         if (r != 0) {
             __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar readFrame %d failed", i);
+            return nullptr;
         }
-//    }
+
     
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar pDepthFrame[0]=%f",
                         ((float *)pDepthFrame.data)[0]);
-//    free(pDepthFrame.data);
-    
-//    g_pDepthFrameData->data = malloc(irWidth*irHeight);
-//    streamDepth->readFrame(g_pDepthFrameData);
-//    __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar g_pDepthFrameData->data[0]=%u",
-//                        ((unsigned char *)g_pDepthFrameData->data)[0]);
     
     FILE* pf = fopen("/storage/emulated/0/huaweiarDepth.yuv", "w");
     int lenPerFrame = irWidth*irHeight* sizeof(float);
@@ -153,15 +147,14 @@ void * test_call_read_depth_frame_function(void * vptr_args)
     pthread_exit(nullptr);
     
 }
-;
+
 int g_yuvCount = 1;
 
 void * test_call_read_color_frame_function(void * vptr_args)
 {
     __android_log_print(ANDROID_LOG_ERROR, "AR", "shiyang ar test_call_read_color_frame_function");
-    //Device * device = (Device*)vptr_args;
-    //VideoFrame *pFrame = (VideoFrame*)vptr_args;
-//    return nullptr;
+    
+    return nullptr;
     Device device;
     
     if (g_yuvCount > 0) {
