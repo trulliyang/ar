@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     tools:context="appmagics.avatardemo.MainActivity">
 
-    <appmagics.avatardemo.CameraSurfaceView
-        android:id="@+id/camera_surface"
-        android:layout_width="72dip"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="96dip" />
+    <!--<appmagics.avatardemo.CameraSurfaceView-->
+        <!--android:id="@+id/camera_surface"-->
+        <!--android:layout_width="72dip"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_height="96dip" />-->
 
-    <FrameLayout
-        android:id="@+id/unity_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <!--<FrameLayout-->
+        <!--android:id="@+id/unity_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
 
 </RelativeLayout>

@@ -46,5 +46,8 @@ dependencies {
     compile files('libs/hwservicehost_intf.jar')
     compile files('libs/OpenCamera.jar')
     compile files('libs/ArCamera.jar')
-    //compile files('libs/unity-classes.jar')
+    compile files('libs/ArJni.jar')
+    compile files('libs/FaceReconstruct.jar')
+    compile files('libs/LibUpdateClient.jar')
+    compile files('libs/unity-classes.jar')
 }

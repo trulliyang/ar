@@ -10,14 +10,16 @@ import java.nio.ByteBuffer;
 
 public class ARCamera {
     
-    
+    static {
+        System.loadLibrary("native-lib");
+    }
     
     public void openARCamera() {
-//        openARCameraJNI();
+        openARCameraJNI();
     }
     
     public void closeARCamera() {
-//        closeARCameraJNI();
+        closeARCameraJNI();
     }
     
     public void getARCameraData() {
@@ -27,8 +29,8 @@ public class ARCamera {
 //    public native void detectJNI(Context context, int type, int width, int height, int format,
 //                                 String path, int angle, ByteBuffer data, float[] dataout);
     
-//    public native void closeARCameraJNI();
+    public native void closeARCameraJNI();
 //
-//    public native void openARCameraJNI();
+    public native void openARCameraJNI();
     
 }
