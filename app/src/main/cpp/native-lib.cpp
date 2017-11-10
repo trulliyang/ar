@@ -30,8 +30,8 @@ public:
 
 static const _NullString ANY_DEVICE;
 
-VideoFrame *g_pYUVFrameData = new VideoFrame();
-VideoFrame *g_pDepthFrameData = new VideoFrame();
+Device deviceDepth;
+Device deviceColor;
 VideoStream * streamDepth = nullptr;
 VideoStream * streamColor = nullptr;
 int g_count = 1;
